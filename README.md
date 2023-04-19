@@ -1,12 +1,4 @@
-# Mintlify Starter Kit
-
-Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
-
-- Guide pages
-- Navigation
-- Customizations
-- API Reference pages
-- Use of popular components
+# Maya Labs Docs
 
 ### 👩‍💻 Development
 
@@ -21,12 +13,6 @@ Run the following command at the root of your documentation (where mint.json is)
 ```
 mintlify dev
 ```
-
-### 😎 Publishing Changes
-
-Changes will be deployed to production automatically after pushing to the default branch.
-
-You can also preview changes using PRs, which generates a preview link of the docs.
 
 #### Troubleshooting
 

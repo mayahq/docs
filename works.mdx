@@ -35,10 +35,20 @@ output = function.call({"term": "Dr. Vikram Sarabhai"})
 print(output)
 ```
 
-## 5. Iterating on development
+## 5. Viewing/modifying the program graph
+
+## 6. Iterating in development
 
 ```python
 function.update(script=script)
 ```
 
 ## 6. Using in production
+
+To disable all updates in production, run `function.lock()`
+
+```python
+function_unique = mayalabs.Function(name="UniqueName")
+function_unique.call({ "term" : "" })
+
+```
