@@ -1,0 +1,36 @@
+---
+title: How it works
+description: "A step-by-step walk through how a natural language function works."
+---
+
+This documentation
+
+## 1. Scripting in English
+
+```python
+script = """
+1. trigger on receive
+2. research {{term}} on wikipedia
+3. extract 'title' and 'summary' from tabular data
+4. send response back
+"""
+```
+
+## 2. Initializing the Function object
+
+```python
+function = mayalabs.Function(name="UniqueName")
+```
+
+## 3. Updating the function with the Script
+
+```python
+function.update(script=script)
+```
+
+## 4. Calling the function
+
+```python
+output = function.call({"term": "Dr. Vikram Sarabhai"})
+print(output)
+```
