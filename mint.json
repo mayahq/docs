@@ -23,11 +23,6 @@
   },
   "anchors": [
     {
-      "name": "Reference",
-      "icon": "rectangle-terminal",
-      "url": "api-reference"
-    },
-    {
       "name": "Changelog",
       "icon": "list",
       "url": "changelog"
@@ -43,7 +38,7 @@
       "group": "Overview",
       "pages": [
         "introduction",
-        "works",
+        "tutorial",
         "capabilities"
       ]
     },
@@ -63,16 +58,10 @@
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "Teaching",
       "pages": [
-        "api-reference/authentication"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create"
+        "teaching/introduction",
+        "teaching/steps"
       ]
     },
     {
