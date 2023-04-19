@@ -1,0 +1,171 @@
+---
+title: Tutorial - Internal Tool
+description: "A simple tutorial to make and test an internal tool to make a POST call to an HTTP endpoint"
+---
+
+In this simple tutorial, we introduce Maya by showing how you could build a simple internal
+tool to enter data into a Google sheet using just natural language.
+
+## Setting things up
+
+Get a Maya API key in the web interface and set it up like this :
+
+```
+export MAYA_API_KEY = "mayakey-..."
+```
+
+Or set `mayalabs.api_key` to its value, in a file, like `main.py`:
+
+```python main.py
+import mayalabs
+
+mayalabs.api_key = "mayakey-..."
+
+```
+
+We will also need a google sheet. Make a new one and give it two columns `Name` and `Email`.
+
+## Writing data to the gsheet
+
+### Drafting the script
+
+The following script generates a program to write the variables `Name` and `Email` passed into it
+to a google sheet.
+
+```python main.py
+script = """
+1. write {{Name}}, {{Email}} to google sheet
+"""
+```
+
+But this script isn't callable/testable from outside yet - we'll need to wrap with a receive and respond
+steps to do so.
+
+```python main.py
+script = """
+1. trigger on receive
+2. write {{Name}}, {{Email}} to google sheet
+3. send response back
+"""
+```
+
+<Tip>
+  You **don't need to replicate the exact syntax** of the steps above to get the
+  same results. They should be just semantically similar i.e. be the _same in
+  meaning in English_, and the PAC-1 interpreter should understand and adjust to
+  the differences. For instance, the following will give the same result :
+</Tip>
+
+```python main.py
+script = """
+1. on receiving message, trigger
+2. put into gsheet the fields {{Name}}, {{Email}}
+3. send response
+"""
+```
+
+### Initializing & updating the function
+
+`mayalabs.Function` is a standalone object that encapsulates the script, the program graph generated from the script, auto-installed dependencies and dedicated compute required to run it. Functions have an unique property `name`, and can be reused using that.
+
+```python main.py
+# initialization
+function_tool = mayalabs.Function(name="GsheetTool")
+
+# linking the `script` with the function
+function_tool.update(script=script)
+
+```
+
+### Calling the function
+
+```python main.py
+
+output = function_tool.call({"Name" : "Dushyant", "Email" : "Abc@c.co"})
+
+```
+
+Now `main.py` should like this :
+
+```python main.py
+
+import mayalabs
+
+script = """
+1. trigger on receive
+2. write {{Name}}, {{Email}} to google sheet
+3. send response back
+"""
+
+# initialization
+function_tool = mayalabs.Function(name="GsheetTool")
+
+# updating the `script`
+function_tool.update(script=script)
+
+#calling the function
+output = function_tool.call({"Name" : "Dushyant", "Email" : "Abc@c.co"})
+```
+
+On running this python file, `python main.py`, the following should happen :
+
+1. (_in parallel_) PAC-1 generates the program graph step-by-step
+2. (_in parallel_) A compute runtime called a `Worker` is spun up to deploy the program
+3. Dependencies are auto-detected and installed on the `Worker`
+4. Maya indicates that Google Sheet authentication + URL is required to run, with link to set up
+
+On securely logging in and setting the Gsheet URL we setup earlier, you can now run `python main.py` again, and it should add a new entry to the gsheet.
+
+<Tip>
+  We now have a script to write data into a google sheet in **four lines of
+  code** that can _run anywhere_ - Maya abstracts away the code, dependencies
+  and deployment, and centers focus on just naturally telling the machine what
+  to do.
+</Tip>
+
+## Entering data using a form
+
+Now that we have a basic script set up, we can change parts of it, and PAC-1 detects and deploys only the changes.
+
+For instance, instead of calling it from within Python, say we need to spin up an interactive form with fields to enter data.
+
+### Creating a form
+
+Since the script is composable, we can just swap out the respond/receive bits, and put in a form step. For now, we can store this in a new script string `string_form` :
+
+```python main.py
+script_form = """
+1. create a form with fields {{Name}} and {{Email}} as string
+2. write {{Name}}, {{Email}} to google sheet
+"""
+```
+
+### Updating the function
+
+The same `Function` named **GsheetTool** can just be updated with this new script.
+
+```python main.py
+# initialization
+function_tool = mayalabs.Function(name="GsheetTool")
+
+# updating the `script`
+function_tool.update(script=script_form)
+```
+
+Running `python main.py` again will update the function with this new script, and the form will be generated.
+
+You can view and interact with the form by running `function_tool.show()`, which prints and URL where the form is hosted.
+
+### Locking to prevent updates
+
+The Python file in the current form will run the `.update` command everytime it's run, and will redeploy if changes are detected. To prevent this, call the `.lock()` method:
+
+```python main.py
+function_tool.lock()
+```
+
+Alternatively, unlock for updating and redeploying a modified script :
+
+```python main.py
+function_tool.unlock()
+```

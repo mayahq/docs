@@ -44,6 +44,7 @@
       "pages": [
         "introduction",
         "works",
+        "tutorial",
         "capabilities"
       ]
     },
@@ -60,6 +61,13 @@
         "examples/processes",
         "examples/memory",
         "examples/labour"
+      ]
+    },
+    {
+      "group": "Teaching",
+      "pages": [
+        "teaching/introduction",
+        "teaching/steps"
       ]
     },
     {
