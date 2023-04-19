@@ -51,7 +51,14 @@
       "pages": [
         "examples/conditionals",
         "examples/custom",
-        "examples/web"
+        "examples/web",
+        "examples/repeating",
+        "examples/dashboards",
+        "examples/bots",
+        "examples/pipelines",
+        "examples/processes",
+        "examples/memory",
+        "examples/labour"
       ]
     },
     {
@@ -65,6 +72,12 @@
       "pages": [
         "api-reference/endpoint/get",
         "api-reference/endpoint/create"
+      ]
+    },
+    {
+      "group": "Changelog",
+      "pages": [
+        "changelog/log"
       ]
     }
   ],
