@@ -1,0 +1,48 @@
+---
+title: "Capabilities"
+description: "This is where you can describe your product's features"
+---
+
+## Learning from a few samples
+
+The system can be taught how to do a new task by providing just 2 samples of the task as demonstration. It understands the similarities and differences between the samples, and uses that to predictably generalize to a similar instruction it hasn't seen. The more samples with variations provided, the more refined its understanding of that task.
+
+## Self-Referential
+
+Maya can generate programs to call it's own API, making it possible to automate any task you can manually do using the Maya app like creating/calling new workers and generating/editing programs.
+
+## Long-term memory
+
+Maya exposes an API to store, retrieve and answer questions from an internal vectorized document store. Programs have been taught to call this API, as a part of the Maya standard library, to do custom tasks like composing emails from a particular template, or storing documents from scraping the web to refer to later.
+
+## Turing-complete
+
+The PAC-1 interpreter that converts natural language steps into executable programs is Turing-complete. Anything you can do with a scripting language like Python, can be done here as well.
+
+## Interpretable
+
+For every natural language instruction, Maya generates a human-interpretable set of steps in plain English that it will execute. These steps can be modified or edited to change its intended behaviour. The PAC-1 interpreter converts these steps into executable graphs in our functional visual programming language, that are deployed to carry out the task.
+
+## Compositional
+
+Each Maya step can be thought of as a standalone function that takes a message, processes it, and sends it over to the next step, like components along a factory line. Maya's functional behaviour can be changed by just rearranging these steps in different ways.
+
+## Deterministic
+
+The PAC-1 interpreter is predictable and deterministic for unambiguous commands. Correct generations are globally cached for faster iteration times. For generations which need more subjective judgement, the cache can be over riden to regenerate the programs.
+
+## L1 Generalization
+
+Today, Maya can robustly generalize only within the steps and recipes has been taught, or known variables within known domains.
+
+## Parallelization & Concurrency
+
+Maya can launch new Worker runtimes to perform tasks in parallel (repeat the same task across N workers) or concurrently (break a task down into N steps and distribute it among N workers).
+
+## Edit by Instruction
+
+Since the steps it generates are in natural language, they can be edited using just English instruction.
+
+## Continuous deployment
+
+Once a program is generated, set up takes a few clicks (adding an API key, or authenticating via Oauth for third party tools), and then Maya deploys both the frontend and backend instantly. For subsequence edits, Maya detects and deploys only the changes, tightening the loop between instruction and final result.

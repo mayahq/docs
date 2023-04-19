@@ -5,61 +5,66 @@
     "dark": "/logo/dark.png",
     "light": "/logo/light.png"
   },
-  "favicon": "/favicon.png",
+  "favicon": "/favicon-32x32.png",
   "colors": {
-    "primary": "#0069ED",
-    "light": "#4D9CFF",
-    "dark": "#0050B4"
+    "primary": "#4f2f4d",
+    "light": "#b681b3",
+    "dark": "#4f2f4d"
   },
   "topbarLinks": [
     {
       "name": "Documentation",
-      "url": "https://mintlify.com/docs"
+      "url": "https://mayalabs.io/docs"
     }
   ],
   "topbarCtaButton": {
     "name": "Get Started",
-    "url": "https://github.com/mintlify/starter"
+    "url": "https://app.mayalabs.io"
   },
   "anchors": [
     {
-      "name": "API Reference",
+      "name": "Reference",
       "icon": "rectangle-terminal",
       "url": "api-reference"
     },
     {
       "name": "Changelog",
       "icon": "list",
-      "url": "https://mintlify.com"
-    },
-    {
-      "name": "Community",
-      "icon": "discord",
-      "url": "https://mintlify.com/community"
+      "url": "changelog"
     }
   ],
   "navigation": [
     {
-      "group": "Home",
-      "pages": ["introduction", "features"]
+      "group": "Overview",
+      "pages": [
+        "introduction",
+        "capabilities"
+      ]
+    },
+    {
+      "group": "Examples",
+      "pages": [
+        "examples/conditionals",
+        "examples/custom",
+        "examples/web"
+      ]
     },
     {
       "group": "API Documentation",
-      "pages": ["api-reference/authentication"]
+      "pages": [
+        "api-reference/authentication"
+      ]
     },
     {
       "group": "Endpoint Examples",
       "pages": [
         "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/update",
-        "api-reference/endpoint/delete"
+        "api-reference/endpoint/create"
       ]
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "twitter": "https://twitter.com/mayalabsio",
+    "github": "https://github.com/mayahq"
   }
 }

@@ -1,34 +1,117 @@
 ---
 title: Introduction
-description: "Welcome to your new Mintlify documentation. Get started making it yours."
+description: "Maya is a new way to program machines - using natural language."
 ---
 
-<img src="/images/banner.png" />
+<Info>
+  The Maya Labs Python SDK provides easy async access to our PAC-1 program
+  synthesis engine, with a CLI to instruct and generate programs from
+  instructions in natural language.
+</Info>
 
-## Setting up
-The first step to world-class documentation is setting up your editing environnments. 
+## Installation
+
+Run the command below to install the `mayalabs` package locally.
+
+```
+pip install --upgrade mayalabs
+```
+
+The first step to world-class documentation is setting up your editing environnments.
+
 <CardGroup cols={2}>
-  <Card title="Edit Your Docs" icon="pen-to-square" href="https://mintlify.com/docs/quickstart">
+  <Card
+    title="Get API Key"
+    icon="pen-to-square"
+    href="https://app.mayalabs.io/settings/developers"
+  >
     Get your docs set up locally for easy development.
   </Card>
-  <Card title="Preview Changes" icon="image" href="https://mintlify.com/docs/development">
+  <Card
+    title="View Examples"
+    icon="image"
+    href="https://mintlify.com/docs/development"
+  >
     Preview your changes before you push to make sure they're perfect.
   </Card>
 </CardGroup>
 
-## Make it yours
-Update your docs to your brand and add valuable content for the best user conversion. 
-<CardGroup cols={2}>
-  <Card title="Customize Style" icon="palette" href="https://mintlify.com/docs/settings/global" >
-    Customize your docs to your company's colors and brands.
-  </Card>
-  <Card title="Reference APIs" icon="code" href="https://mintlify.com/docs/api-playground/openapi" >
-    Automatically generate endpoints from an OpenAPI spec.
-  </Card>
-  <Card title="Add Components" icon="screwdriver-wrench" href="https://mintlify.com/docs/components/accordion">
-    Build interactive features and designs to guide your users.
-  </Card>
-  <Card title="Get Inspiration" icon="stars" href="https://mintlify.com/showcase">
-    Check out our showcase of our favorite documentation. 
-  </Card>
-</CardGroup>
+```
+export MAYA_API_KEY = "mayakey-..."
+```
+
+Or set `mayalabs.api_key` to its value:
+
+```python main.py
+import mayalabs
+
+mayalabs.api_key = "mayakey-..."
+
+script = """
+1. trigger on receive
+2. research {{term}} on wikipedia
+3. extract 'title' and 'summary' from tabular data
+4. send response back
+"""
+
+function = mayalabs.Function(name="Scrape2")
+# Creating new worker...
+
+function.update(script=script)
+# Generating program graph...
+# Starting worker...
+# Installing dependencies...
+# Deployed!
+
+output = function.call({"term": "Dr. Vikram Sarabhai"})
+print(output)
+# finds and outputs title and summary from wikipedia results
+
+```
+
+## How it Works
+
+PAC-1 takes in steps written in English, writes & assembles a discrete program graph, and deploys ready-to-use software on our compute infrastructure, that you can call within your code. You can set up missing dependencies / visualize the flow of logic by following the link to flow-based editor it provides after deployment.
+
+## Use Cases
+
+- [If...Then Conditionals and Looping](/EXAMPLES.md#ifthen-conditionals-and-looping)
+- [Custom Functions](/EXAMPLES.md#custom-functions)
+- [Web Scrapers](/EXAMPLES.md#web-scrapers)
+- [Repeating Workflows](/EXAMPLES.md#repeating-workflows)
+- [Custom Dashboards](/EXAMPLES.md#custom-dashboards)
+- [Data Transformation](/EXAMPLES.md#data-transformation)
+- [Platform Bots](/EXAMPLES.md#platform-bots)
+- [Business Processes](/EXAMPLES.md#business-processes)
+- [Long-term memory](/EXAMPLES.md#long-term-memory)
+- [Division of labour](/EXAMPLES.md#division-of-labour)
+  - [Parallelization](/EXAMPLES.md#parallelization)
+  - [Concurrency](/EXAMPLES.md#concurrency)
+
+## Command Line Usage
+
+Today, script need to be manually written step-by-step, but we are offering early WIP preview of iterative script generation via our CLI. Try running:
+
+```
+$ mayalabs instruct -c 'fetch Name and Email from gsheet, write function to merge all columns, and return data'
+```
+
+And then use the generated script as function.
+
+## Requirements
+
+- Python 3.7.1+
+
+## Issues
+
+All feedback and bug reports welcome! Report in the [issues section](https://github.com/mayahq/mayalabs-sdk-python/issues), or mail us at humans@mayalabs.io.
+
+Full list of capabilities and limits [here](https://docs.mayalabs.io/capabilities-and-limits).
+
+## Roadmap
+
+- [x] Cleaner logs and exception handling
+- [ ] Dependency configuration UX improvement
+- [ ] Import skill repositories for reusing skills created by user or present in store
+- [ ] Create and call downstream auto-deployed functions
+- [ ] Allow multi-profile and team profile access
